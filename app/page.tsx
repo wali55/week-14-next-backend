@@ -1,9 +1,12 @@
-import axios from "axios";
+import client from "@/db";
 
 async function getUserData() {
-  await new Promise((r) => setTimeout(r, 5000));
-  const res = await axios.get("http://localhost:3000/api/user");
-  return res.data;
+  const userData = await client.user.findUnique({
+    where: {
+        id: 1
+    }
+  })
+  return userData;
 }
 
 export default async function Home() {
